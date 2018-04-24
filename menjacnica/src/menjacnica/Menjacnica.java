@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 
 import menjacnica.sistemskeoperacije.SODodajValutu;
-import menjacnica.sistemskeoperacije.SOIzvrsiTransakciju;
 import menjacnica.sistemskeoperacije.SOObrisiValutu;
 import menjacnica.sistemskeoperacije.SOSacuvajUFajl;
 import menjacnica.sistemskeoperacije.SOUcitajIzFajla;
@@ -30,7 +29,10 @@ public class Menjacnica implements MenjacnicaInterface {
 
 	@Override
 	public double izvrsiTransakciju(Valuta valuta, boolean prodaja, double iznos) {
-		return SOIzvrsiTransakciju.izvrsi(valuta, prodaja, iznos);
+		if (prodaja)
+			return iznos * valuta.getProdajni();
+		else
+			return iznos * valuta.getKupovni();
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class Menjacnica implements MenjacnicaInterface {
 
 	@Override
 	public void ucitajIzFajla(String putanja) {
-		kursnaLista = SOUcitajIzFajla.izvrsi(putanja);
+		kursnaLista = SOUcitajIzFajla.izvrsi(putanja, kursnaLista);
 	}
 
 	@Override
