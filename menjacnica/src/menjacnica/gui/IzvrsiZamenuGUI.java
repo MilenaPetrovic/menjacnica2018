@@ -79,6 +79,8 @@ public class IzvrsiZamenuGUI extends JFrame {
 
 		// podesavanje
 		this.valuta = valuta;
+
+		prikaziValutu();
 	}
 
 	private JLabel getLblKupovni() {
@@ -166,8 +168,8 @@ public class IzvrsiZamenuGUI extends JFrame {
 			btnIzvrsiZamenu = new JButton("Izracunaj iznos");
 			btnIzvrsiZamenu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					textFieldIznos
-							.setText(GUIKontroler.izvrsiZamenu(valuta, rdbtnProdaja.isSelected(), Double.parseDouble(textFieldIznos.getText())));
+					textFieldKonacniIznos.setText(GUIKontroler.izvrsiZamenu(valuta, rdbtnProdaja.isSelected(),
+							Double.parseDouble(textFieldIznos.getText())));
 				}
 			});
 			btnIzvrsiZamenu.setBounds(24, 234, 160, 25);
@@ -240,6 +242,12 @@ public class IzvrsiZamenuGUI extends JFrame {
 			textFieldKonacniIznos.setColumns(10);
 		}
 		return textFieldKonacniIznos;
+	}
+
+	private void prikaziValutu() {
+		textFieldProdajniKurs.setText("" + valuta.getProdajni());
+		textFieldKupovniKurs.setText("" + valuta.getKupovni());
+		textFieldValuta.setText(valuta.getSkraceniNaziv());
 	}
 
 }

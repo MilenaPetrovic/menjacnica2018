@@ -42,7 +42,7 @@ public class Menjacnica implements MenjacnicaInterface {
 
 	@Override
 	public void ucitajIzFajla(String putanja) {
-		kursnaLista = SOUcitajIzFajla.izvrsi(putanja, kursnaLista);
+		SOUcitajIzFajla.izvrsi(putanja, kursnaLista);
 	}
 
 	@Override
